@@ -5,11 +5,7 @@ from pypinyin import pinyin, Style
 import random
 import csv
 import requests
-import threading
 import os
-
-AnkiDeckLock = threading.Lock()
-AnkiPackageLock = threading.Lock()
 
 modelID = random.randrange(1 << 30, 1 << 31)
 deckID = random.randrange(1 << 30, 1 << 31)
@@ -87,8 +83,7 @@ def getPronunciation(word):
             audio_url = iElement['data-audio_url']
             file = downloadAudio(word, audio_url)
             if(file):
-                with AnkiPackageLock:
-                    AnkiPackage.media_files.append(file)
+                AnkiPackage.media_files.append(file)
                 return f"[sound:{file}]"
             
     print(f"Failed to download audio for: {word}")
@@ -137,20 +132,14 @@ def generateCard(word):
         fields=[word, pronunciation, examples, definition, pinyin]
     )
 
-def processWord(word):
-    card = generateCard(word)
-    with AnkiDeckLock:
-        AnkiDeck.add_note(card)
-
 def main():
     path = input("Enter path of csv file: ")
     words = getWords(path)
 
     threads = []
     for word in words:
-        thread = threading.Thread(target=processWord, args=(word,))
-        threads.append(thread)
-        thread.start()
+        card = generateCard(word)
+        AnkiDeck.add_note(card)
 
     for thread in threads:
         thread.join()
