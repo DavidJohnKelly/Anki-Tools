@@ -16,7 +16,7 @@ deckID = random.randrange(1 << 30, 1 << 31)
 
 AnkiModel = genanki.Model(
     modelID,
-    'Test Model',
+    'Hanzi Model',
     fields=[
         {'name': 'Character'},
         {'name': 'Pronunciation'},
@@ -48,7 +48,7 @@ AnkiModel = genanki.Model(
 
 AnkiDeck = genanki.Deck(
     deckID,
-    'Test Deck'
+    'Output Deck'
 )
 
 AnkiPackage = genanki.Package(AnkiDeck)
@@ -123,7 +123,7 @@ def getDefinition(word):
 
 def getPinyin(word):
     pinyinList = [pinyin(char, style=Style.TONE, heteronym=True) for char in word]
-    return ' '.join([''.join(item) for sublist in pinyinList for item in sublist])
+    return ' '.join(['/ '.join(item) for sublist in pinyinList for item in sublist])
 
 
 def generateCard(word):
@@ -143,8 +143,8 @@ def processWord(word):
         AnkiDeck.add_note(card)
 
 def main():
-
-    words = getWords("test.csv")
+    path = input("Enter path of csv file: ")
+    words = getWords(path)
 
     threads = []
     for word in words:
@@ -155,7 +155,7 @@ def main():
     for thread in threads:
         thread.join()
 
-    AnkiPackage.write_to_file('test.apkg')
+    AnkiPackage.write_to_file('output.apkg')
 
     for word in words:
         try:
