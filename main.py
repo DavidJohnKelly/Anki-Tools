@@ -7,6 +7,9 @@ import csv
 import requests
 import os
 
+user_agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0.1 Safari/602.2.14'
+headers = {'User-Agent': user_agent,'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'}
+
 modelID = random.randrange(1 << 30, 1 << 31)
 deckID = random.randrange(1 << 30, 1 << 31)
 
@@ -61,7 +64,7 @@ def getWords(path):
     return words
 
 def downloadAudio(word, url):
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     if response.status_code == 200:
         fileName = f"{word}.mp3"
         with open(fileName, 'wb') as file:
@@ -71,7 +74,7 @@ def downloadAudio(word, url):
 
 def getPronunciation(word):
     url = f"https://chinese.yabla.com/chinese-english-pinyin-dictionary.php?define={word}"
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
     elements = soup.find_all("li", class_="entry center_maxed")
     for listElement in elements:
@@ -92,7 +95,7 @@ def getPronunciation(word):
 
 def getExamples(word):
     url = f"https://www.iciba.com/word?w={word}"
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
     examples = soup.find_all('p', class_='NormalSentence_cn__gyUtC')
 
@@ -108,7 +111,7 @@ def getExamples(word):
 
 def getDefinition(word):
     url = f"https://www.mdbg.net/chinese/dictionary?page=worddict&wdrst=0&wdqb={word}"
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
     translation_element = soup.find("div", class_="defs")
     if translation_element:
