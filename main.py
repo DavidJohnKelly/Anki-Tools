@@ -1,10 +1,10 @@
 import genanki
 from bs4 import BeautifulSoup
 from pypinyin import pinyin, Style
+import requests
 
 import random
 import csv
-import requests
 import os
 
 user_agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0.1 Safari/602.2.14'
