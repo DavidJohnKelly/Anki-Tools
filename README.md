@@ -51,7 +51,7 @@ pip install -r (Path)\requirements.txt
 
 ## Example
 - Input CSV file
-![Input](https://github.com/DavidJohnKelly/CSVtoAnki_Mandarin/assets/79090791/56a757ba-8381-4114-91ef-f57d570de90d)
+![Input](https://github.com/DavidJohnKelly/CSVtoAnki_Mandarin/assets/79090791/4cbe7fa0-2690-4a57-b2f5-4aebb47f3b58)
 
 
 - Wait for each card to be generated
