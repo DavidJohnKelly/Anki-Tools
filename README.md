@@ -50,12 +50,12 @@ pip install -r (Path)\requirements.txt
 
 
 ## Example
-- Copy URL
-![image](https://user-images.githubusercontent.com/79090791/124382145-d5dea500-dcbd-11eb-9c3f-6e6f975f3a8c.png)
-- Paste into console and fill in options as required
-![image](https://user-images.githubusercontent.com/79090791/124382312-a4b2a480-dcbe-11eb-8eb3-f46a94791d31.png)
-- See result
-![image](https://user-images.githubusercontent.com/79090791/124382371-feb36a00-dcbe-11eb-91c5-886d494630bf.png)
+- Input CSV file
+![image](https://github.com/DavidJohnKelly/CSVtoAnki_Mandarin/assets/79090791/ebc91129-306c-46af-a8a7-67d18af97404)
+- Wait for each card to be generated
+![image](https://github.com/DavidJohnKelly/CSVtoAnki_Mandarin/assets/79090791/b68cb145-d9c4-4dad-b97e-44d674a0f694)
+- Import resulting deck into Anki
+![image](https://github.com/DavidJohnKelly/CSVtoAnki_Mandarin/assets/79090791/2998db15-5c35-4de9-90fb-6c5c61249f0c)
 
 ## License
 
