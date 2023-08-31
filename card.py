@@ -2,11 +2,15 @@ import example
 import definition
 import pinyin
 import pronunciation
+import model
 
 import genanki
 
 
-def generateCard(word, AnkiModel):
+AnkiModel = model.generateModel()
+
+
+def generateCard(word):
     pron = pronunciation.getPronunciation(word)
     examp = example.getExamples(word)
     defin = definition.getDefinition(word)

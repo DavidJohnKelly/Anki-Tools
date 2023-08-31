@@ -23,4 +23,5 @@ def getExamples(word):
                 f"{i}: {example.replace(word, '<b>' + word + '</b>')}")
         return "<br>".join(formatted[:5])
 
+    print(f"Examples not found for {word}")
     return f"Examples not found for {word}"

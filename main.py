@@ -2,14 +2,12 @@ import genanki
 
 import words
 import card
-import model
 import deck
 
 import os
 
 
 AnkiDeck = deck.generateDeck()
-AnkiModel = model.generateModel()
 AnkiPackage = genanki.Package(AnkiDeck)
 
 
@@ -26,7 +24,7 @@ def main():
 
     for word in chineseWords:
         print(f"Word: {word}")
-        AnkiCard = card.generateCard(word, AnkiModel)
+        AnkiCard = card.generateCard(word)
         audioField = AnkiCard.fields[1]
         if (audioField != ''):
             audioFile = audioField.split(":")[1][:-1]
@@ -35,6 +33,8 @@ def main():
         print(f"Created Card for {word}")
 
     AnkiPackage.write_to_file('output.apkg')
+
+    print("Finished creating deck")
 
     clean()
 

@@ -9,4 +9,5 @@ def getDefinition(word):
     if translation_element:
         return translation_element.get_text()
 
+    print(f"Definition not found for {word}")
     return f"Definition not found for {word}"
