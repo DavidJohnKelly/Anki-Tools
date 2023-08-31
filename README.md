@@ -53,8 +53,10 @@ pip install -r (Path)\requirements.txt
 - Input CSV file
 ![Input](https://github.com/DavidJohnKelly/CSVtoAnki_Mandarin/assets/79090791/56a757ba-8381-4114-91ef-f57d570de90d)
 
+
 - Wait for each card to be generated
 ![Example](https://github.com/DavidJohnKelly/CSVtoAnki_Mandarin/assets/79090791/dd1b834d-cff9-490d-a911-bdac36416813)
+
 
 - Import resulting deck into Anki
 ![Anki](https://github.com/DavidJohnKelly/CSVtoAnki_Mandarin/assets/79090791/a1ce0f8b-f84f-4020-aa7a-af1e3fa2ccaa)
