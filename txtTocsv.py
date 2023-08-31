@@ -17,7 +17,7 @@ def getCharacters(path):
                         characters.append(''.join(match))
                 else:
                     match = re.match(r'^([\u4e00-\u9fff]+)\t', line)
-                    if match:
+                    if(match):
                         characters.append(match.group(1)) 
 
     except Exception as e:
