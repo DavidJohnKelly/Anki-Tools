@@ -55,7 +55,7 @@ pip install -r (Path)\requirements.txt
 
 
 - Wait for each card to be generated
-![image](https://github.com/DavidJohnKelly/CSVtoAnki_Mandarin/assets/79090791/b68cb145-d9c4-4dad-b97e-44d674a0f694)
+![Example](https://github.com/DavidJohnKelly/CSVtoAnki_Mandarin/assets/79090791/d92a6c26-049e-4b11-941a-c43906e26437)
 
 
 - Import resulting deck into Anki
