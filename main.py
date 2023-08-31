@@ -1,15 +1,23 @@
 import genanki
 
-import modules.words as words
-import modules.card as card
-import modules.model as model
-import modules.deck as deck
+import words
+import card
+import model
+import deck
 
 import os
+
 
 AnkiDeck = deck.generateDeck()
 AnkiModel = model.generateModel()
 AnkiPackage = genanki.Package(AnkiDeck)
+
+
+def clean():
+    cDir = os.getcwd()
+    for file in os.listdir(cDir):
+        if file.endswith(".mp3"):
+            os.remove(os.path.join(cDir, file))
 
 
 def main():
@@ -17,17 +25,18 @@ def main():
     chineseWords = words.getWords(path)
 
     for word in chineseWords:
+        print(f"Word: {word}")
         AnkiCard = card.generateCard(word, AnkiModel)
-        if (AnkiCard.fields["Pronunciation"]):
-            AnkiPackage.media_files.append(AnkiCard.fields["Pronunciation"])
+        audioField = AnkiCard.fields[1]
+        if (audioField != ''):
+            audioFile = audioField.split(":")[1][:-1]
+            AnkiPackage.media_files.append(audioFile)
         AnkiDeck.add_note(AnkiCard)
+        print(f"Created Card for {word}")
 
     AnkiPackage.write_to_file('output.apkg')
 
-    cDir = os.getcwd()
-    for filename in os.listdir(cDir):
-        if filename.endswith(".mp3"):
-            os.remove(os.path.join(cDir, filename))
+    clean()
 
 
 if __name__ == "__main__":

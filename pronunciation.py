@@ -1,6 +1,5 @@
-import requests
 from pydub import AudioSegment
-import html
+import webrequest
 
 
 def downloadAudioYabla(word, html):
@@ -13,7 +12,7 @@ def downloadAudioYabla(word, html):
             iElement = spanElement.find(
                 "i", class_="word_audio fa fa-volume-up")
             audio_url = iElement['data-audio_url']
-            file = html.downloadAudio(word, audio_url)
+            file = webrequest.downloadAudio(word, audio_url)
             return file
     return
 
@@ -21,9 +20,10 @@ def downloadAudioYabla(word, html):
 def getBackupAudio(word):
     concatenated = AudioSegment.silent(duration=0)
     for character in word:
-        characterHTML = html.getHTML(
+        print(f"Combining audio for {character}")
+        characterHTML = webrequest.getHTML(
             f"https://chinese.yabla.com/chinese-english-pinyin-dictionary.php?define={character}")
-        backupAudio = downloadAudioYabla(word, characterHTML)
+        backupAudio = downloadAudioYabla(character, characterHTML)
         if (backupAudio):
             audioSegment = AudioSegment.from_mp3(backupAudio)
             concatenated += audioSegment
@@ -35,7 +35,7 @@ def getBackupAudio(word):
 
 
 def getPronunciation(word):
-    html = html.getHTML(
+    html = webrequest.getHTML(
         f"https://chinese.yabla.com/chinese-english-pinyin-dictionary.php?define={word}")
 
     initial = downloadAudioYabla(word, html)

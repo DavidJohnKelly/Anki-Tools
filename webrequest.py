@@ -20,3 +20,11 @@ def downloadAudio(word, url):
             file.write(response.content)
         return fileName
     return
+
+
+def validURL(url):
+    try:
+        response = requests.head(url)
+        return response.status_code == 200
+    except requests.RequestException:
+        return False
