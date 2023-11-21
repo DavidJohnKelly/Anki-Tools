@@ -159,4 +159,5 @@ cython_debug/
 .vscode/
 
 # Project File
-.csv
+*.csv
+*.txt

@@ -23,19 +23,21 @@ def main():
     chineseWords = words.getWords(path)
 
     for word in chineseWords:
-        print(f"Word: {word}")
-        AnkiCard = card.generateCard(word)
-        audioField = AnkiCard.fields[1]
-        if (audioField != ''):
-            audioFile = audioField.split(":")[1][:-1]
-            AnkiPackage.media_files.append(audioFile)
-        AnkiDeck.add_note(AnkiCard)
-        print(f"Created Card for {word}")
+        if word.strip():
+            print(f"Word: {word}")
+            try:
+                AnkiCard = card.generateCard(word)
+                audioField = AnkiCard.fields[1]
+                if (audioField != ''):
+                    audioFile = audioField.split(":")[1][:-1]
+                    AnkiPackage.media_files.append(audioFile)
+                AnkiDeck.add_note(AnkiCard)
+                print(f"Created Card for {word}")
+            except:
+                print(f"Encountered error when generating card for {word}")
 
     AnkiPackage.write_to_file('output.apkg')
-
     print("Finished creating deck")
-
     clean()
 
 
